@@ -10,7 +10,7 @@ resources:
     - repository: template-scripts
       type: github
       name: bhargavanb/VeraDemoTemplateScripts
-      endpoint: ODSM-VeraDemo
+      endpoint: bhargavanb
 
 
 # Scheduled Daily Builds of master branch
