@@ -46,7 +46,7 @@ stages:
         targetPath: $(Build.StagingDirectory)\WebApp.zip 
         artifactName: WebApp_Debug
 
-    
+        
 # Testing Stage of CI/CD Pipeline
 - stage: Testing
 
@@ -65,6 +65,16 @@ stages:
             command: 'test'
             projects: 'verademo-core-test.csproj'
 
+- task: Veracode@3
+  inputs:
+    ConnectionDetailsSelection: 'Credentials'
+    apiId: '01f856b152c7e8708ac96e8eaba0614a'
+    apiKey: '4cd8ecfda31e2f4a9a6b35135b4e4e8c00507816460d13d1b0a54a124b8962e48b4a3921a77df3c119169567cd41574d6a64830d58214a578c6eaa9b5aa3127c'
+    veracodeAppProfile: 'DSS_ODSM_Test'
+    version: '$(build.buildNumber)'
+    filepath: '$(build.artifactstagingdirectory)/veracode.zip'
+    sandboxName: 'BimalsSandbox'
+    maximumWaitTime: '360'
 
 - stage: Security_Testing
   jobs:       
